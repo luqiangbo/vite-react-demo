@@ -1,10 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import vitePluginImp from 'vite-plugin-imp'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    vitePluginImp({
+      optimize: true,
+      libList: [
+        {
+          libName: 'antd',
+          libDirectory: 'es',
+          style: (name) => `antd/es/${name}/style`,
+        },
+      ],
+    }),
+  ],
   server: {
     port: 8080,
     hmr: true, // 热更新
@@ -14,6 +27,13 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
       '@c': resolve(__dirname, 'src/components'),
       '/images': 'src/assets/images',
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
     },
   },
   build: {

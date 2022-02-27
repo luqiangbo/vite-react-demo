@@ -8,5 +8,7 @@ module.exports = {
   globals: {},
   parserOptions: {},
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'no-unused-vars': 1,
+  },
 }
