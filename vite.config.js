@@ -21,7 +21,16 @@ export default defineConfig({
   server: {
     port: 8080,
     hmr: true, // 热更新
+    proxy: {
+      '/api': {
+        target: 'http://rap2api.taobao.org/app/mock/1798/',
+        ws: false,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
+
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
