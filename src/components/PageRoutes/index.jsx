@@ -48,25 +48,33 @@ function wrapSuspense(importer) {
 function mapPathConfigToRoute(cfg) {
   // route 的子节点为数组
   return Object.entries(cfg).map(([routePath, child]) => {
-    // () => import() 语法判断
-    if (typeof child === 'function') {
-      // 等于 index 则映射为当前根路由
-      const isIndex = routePath === 'index'
+    if (routePath === 'index' && typeof child !== 'function') {
+      // 首页单独处理
       return {
-        index: isIndex,
-        path: isIndex ? undefined : routePath,
-        // 转换为组件
-        element: wrapSuspense(child),
+        index: true,
+        element: wrapSuspense(child.index),
       }
-    }
-    // 否则为目录，则查找下一层级
-    const { $, ...rest } = child
-    return {
-      path: routePath,
-      // layout 处理
-      element: wrapSuspense($),
-      // 递归 children
-      children: mapPathConfigToRoute(rest),
+    } else {
+      if (typeof child === 'function') {
+        const isIndex = routePath === 'index'
+        const res = {
+          index: isIndex,
+          path: isIndex ? undefined : routePath,
+          element: wrapSuspense(child),
+        }
+        return res
+      } else {
+        // console.log({ child })
+        // 否则为目录，则查找下一层级
+        const { layout, ...rest } = child
+        return {
+          path: routePath,
+          // layout 处理
+          element: wrapSuspense(layout),
+          // 递归 children
+          children: mapPathConfigToRoute(rest),
+        }
+      }
     }
   })
 }
@@ -88,29 +96,32 @@ function mapPathConfigToRouteOther(cfg) {
 }
 
 function generateRouteConfig() {
-  const { $, ...pathConfig } = generatePathConfig()
-  const layout = {}
+  const { layout, ...pathConfig } = generatePathConfig()
+  const admin = {}
   const other = {}
   forOwn(pathConfig, (v, k) => {
     if (k.indexOf('_') === 0) {
       other[k.substring(1)] = v
     } else {
-      layout[k] = v
+      admin[k] = v
     }
   })
+  // console.log({
+  //   generatePathConfig: generatePathConfig(),
+  // })
   // 提取跟路由的 layout
   return [
     {
       path: '/',
-      element: wrapSuspense($),
-      children: mapPathConfigToRoute(layout),
+      element: wrapSuspense(layout.index),
+      children: mapPathConfigToRoute(admin),
     },
     ...mapPathConfigToRouteOther(other),
   ]
 }
 
 const routeConfig = generateRouteConfig()
-// console.log({ routeConfig })
+console.log({ routeConfig })
 
 export function PageRoutes() {
   return useRoutes(routeConfig)

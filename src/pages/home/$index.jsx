@@ -4,7 +4,7 @@ import { apiRobotRmapStart } from '@/api/map'
 
 import './index.less'
 
-function App() {
+function Index() {
   useEffect(() => {
     init()
   })
@@ -19,4 +19,4 @@ function App() {
   return <div className='app'>home</div>
 }
 
-export default App
+export default Index
