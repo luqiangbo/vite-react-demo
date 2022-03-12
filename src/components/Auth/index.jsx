@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { LoadingOutlined } from '@ant-design/icons'
 
 import { useStore } from '@/store'
@@ -19,7 +19,7 @@ function Index() {
     const { code, auth } = res
     setUser({
       isAuth: true,
-      auth: 1,
+      auth,
     })
   }
   return (

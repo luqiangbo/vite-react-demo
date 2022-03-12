@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 import { set, forOwn } from 'lodash-es'
 import { useStore } from '@/store/index'
@@ -112,7 +112,6 @@ function generateRouteConfig() {
   // 提取跟路由的 layout
   const store = useStore.getState()
   const { user } = store
-  console.log({ user, store, useStore })
   if (user.auth === 0) {
     return [...mapPathConfigToRouteOther(other)]
   } else if (user.auth === 1) {
@@ -127,9 +126,12 @@ function generateRouteConfig() {
   }
 }
 
-const routeConfig = generateRouteConfig()
-console.log({ routeConfig })
-
-export function PageRoutes() {
-  return useRoutes(routeConfig)
+export function PageRoutes(props) {
+  useEffect(() => {}, [])
+  if (props.auth !== -1) {
+    const routeConfig = generateRouteConfig()
+    console.log({ routeConfig })
+    return useRoutes(routeConfig)
+  }
+  return <div>*</div>
 }

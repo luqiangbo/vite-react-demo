@@ -22,22 +22,29 @@ const createBearSlice2 = (set, get) => ({
 const createUser = (set, get) => ({
   user: {
     isAuth: false,
-    auth: 0,
+    auth: -1,
   },
   setUser: (data) => set({ user: data }),
 })
 
-const createRootSlice = persist(
-  (set, get) => ({
-    ...createUser(set, get),
-    ...createBearSlice(set, get),
-    ...createBearSlice1(set, get),
-    ...createBearSlice2(set, get),
-  }),
-  {
-    name: 'index-storage',
-    getStorage: () => sessionStorage,
-  },
-)
+// const createRootSlice = persist(
+//   (set, get) => ({
+//     ...createUser(set, get),
+//     ...createBearSlice(set, get),
+//     ...createBearSlice1(set, get),
+//     ...createBearSlice2(set, get),
+//   }),
+//   {
+//     name: 'index-storage',
+//     getStorage: () => sessionStorage,
+//   },
+// )
+
+const createRootSlice = (set, get) => ({
+  ...createUser(set, get),
+  ...createBearSlice(set, get),
+  ...createBearSlice1(set, get),
+  ...createBearSlice2(set, get),
+})
 
 export const useStore = create(createRootSlice)
