@@ -1,7 +1,7 @@
-import { lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
-
 import { set, forOwn } from 'lodash-es'
+import { useStore } from '@/store/index'
 
 // https://zhuanlan.zhihu.com/p/467470716
 
@@ -110,14 +110,21 @@ function generateRouteConfig() {
   //   generatePathConfig: generatePathConfig(),
   // })
   // 提取跟路由的 layout
-  return [
-    {
-      path: '/',
-      element: wrapSuspense(layout.index),
-      children: mapPathConfigToRoute(admin),
-    },
-    ...mapPathConfigToRouteOther(other),
-  ]
+  const store = useStore.getState()
+  const { user } = store
+  console.log({ user, store, useStore })
+  if (user.auth === 0) {
+    return [...mapPathConfigToRouteOther(other)]
+  } else if (user.auth === 1) {
+    return [
+      {
+        path: '/',
+        element: wrapSuspense(layout.index),
+        children: mapPathConfigToRoute(admin),
+      },
+      ...mapPathConfigToRouteOther(other),
+    ]
+  }
 }
 
 const routeConfig = generateRouteConfig()

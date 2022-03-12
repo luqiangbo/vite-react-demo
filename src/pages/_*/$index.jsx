@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 function Index() {
-  return <div>没有</div>
+  return <div>********</div>
 }
 
 export default Index
