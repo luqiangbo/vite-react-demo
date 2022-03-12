@@ -21,8 +21,8 @@ const createBearSlice2 = (set, get) => ({
 
 const createUser = (set, get) => ({
   user: {
-    isAuth: false,
-    auth: -1,
+    isAuth: false, // 是否验证过
+    auth: -1, // 权限  -1:无 0:404等页面 1:详细页面
   },
   setUser: (data) => set({ user: data }),
 })

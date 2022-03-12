@@ -15,6 +15,7 @@ function Index() {
     const [err, res] = await apiAdminAuthCheck({
       token: '123',
     })
+    console.log('auth', { err, res })
     if (err) return
     const { code, auth } = res
     setUser({

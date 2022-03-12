@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { message } from 'antd'
+import { useStore } from '@/store/index'
 
 const baseUrl = import.meta.env.VITE_APP_PROXY_URL
 const to = (promise) =>
@@ -9,6 +11,37 @@ const instance = axios.create({
   timeout: 4 * 1000,
   headers: { 'X-Custom-Header': 'token', baseUrl },
 })
+
+// 请求拦截
+instance.interceptors.request.use(
+  (config) => {
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  },
+)
+
+instance.interceptors.response.use(
+  (response) => {
+    const { status, data } = response
+    message.info(status)
+    if (data.code === -1) {
+      const store = useStore.getState()
+      const { user, setUser } = store
+      setUser({
+        ...user,
+        auth: 0,
+      })
+      return Promise.reject(response.data)
+    } else {
+      return response
+    }
+  },
+  (error) => {
+    return Promise.reject(error)
+  },
+)
 
 export const request = (data) => {
   return to(
