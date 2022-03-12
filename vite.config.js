@@ -42,6 +42,10 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
+        modifyVars: {
+          // 此处也可设置直角、边框色、字体大小等
+          'primary-color': '#645AFF',
+        },
       },
     },
   },
