@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useUpdateEffect } from 'ahooks'
 import { Button } from 'antd'
 
-import { apiRobotRmapStart } from '@/api/map'
 import { useStore } from '@/store/index'
 import { useStoreAll } from '@/store/all'
 
@@ -22,9 +21,7 @@ function Index() {
   const init = () => {
     fatchInit()
   }
-  const fatchInit = async () => {
-    const [err, res] = await apiRobotRmapStart()
-  }
+  const fatchInit = async () => {}
   return (
     <div className='app'>
       home

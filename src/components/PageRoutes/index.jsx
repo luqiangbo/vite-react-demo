@@ -11,7 +11,6 @@ import { useStore } from '@/store/index'
 function generatePathConfig() {
   // 扫描 src/pages 下的所有具有路由文件
   const modules = import.meta.glob('/src/pages/**/$*.{jsx,tsx}')
-  // console.log({ modules })
   const pathConfig = {}
   Object.keys(modules).forEach((filePath) => {
     const routePath = filePath
@@ -64,7 +63,6 @@ function mapPathConfigToRoute(cfg) {
         }
         return res
       } else {
-        // console.log({ child })
         // 否则为目录，则查找下一层级
         const { layout, ...rest } = child
         return {
@@ -106,9 +104,6 @@ function generateRouteConfig() {
       admin[k] = v
     }
   })
-  // console.log({
-  //   generatePathConfig: generatePathConfig(),
-  // })
   // 提取跟路由的 layout
   const store = useStore.getState()
   const { user } = store
@@ -130,7 +125,6 @@ export function PageRoutes(props) {
   useEffect(() => {}, [])
   if (props.auth !== -1) {
     const routeConfig = generateRouteConfig()
-    console.log({ routeConfig })
     return useRoutes(routeConfig)
   }
   return <div>*</div>
