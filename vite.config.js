@@ -2,11 +2,13 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import vitePluginImp from 'vite-plugin-imp'
+import WindiCSS from 'vite-plugin-windicss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    WindiCSS(),
     vitePluginImp({
       optimize: true,
       libList: [

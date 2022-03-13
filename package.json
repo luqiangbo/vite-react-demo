@@ -32,6 +32,8 @@
     "eslint-plugin-react": "^7.28.0",
     "less": "^4.1.2",
     "vite": "^2.8.0",
-    "vite-plugin-imp": "^2.1.6"
+    "vite-plugin-imp": "^2.1.6",
+    "vite-plugin-windicss": "^1.8.3",
+    "windicss": "^3.5.1"
   }
 }
