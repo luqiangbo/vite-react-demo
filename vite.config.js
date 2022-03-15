@@ -18,7 +18,7 @@ export default defineConfig({
       },
     },
   },
-
+  preview: { strictPort: true },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -38,6 +38,7 @@ export default defineConfig({
     },
   },
   build: {
+    chunkSizeWarningLimit: 1024,
     assetsDir: 'static',
     rollupOptions: {
       input: {
