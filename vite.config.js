@@ -2,10 +2,21 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import WindiCSS from 'vite-plugin-windicss'
+import copy from 'rollup-plugin-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), WindiCSS()],
+  base: './',
+  plugins: [
+    react(),
+    WindiCSS(),
+    copy({
+      targets: [
+        { src: 'src/assets/images/**/*', dest: 'dist/public/images' }, // 执行拷贝
+      ],
+      hook: 'writeBundle',
+    }),
+  ],
   server: {
     port: 8080,
     hmr: true, // 热更新
@@ -38,6 +49,9 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'esnext',
+    reportCompressedSize: false, // 取消计算文件大小，加快打包速度
+    sourcemap: false,
     chunkSizeWarningLimit: 1024,
     assetsDir: 'static',
     rollupOptions: {

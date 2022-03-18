@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, DatePicker } from 'antd'
 
 import { apiDetail } from '@/api/user'
+import { getSrc } from '@/utils'
 
 function Index() {
   const fetchDetail = async () => {
@@ -27,6 +28,10 @@ function Index() {
       >
         Button
       </button>
+      <div>
+        <img src='/images/bj.jpg' alt='' />
+        <img src={getSrc('bj.jpg')} alt='' />
+      </div>
     </div>
   )
 }
