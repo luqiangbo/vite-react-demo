@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { LoadingOutlined } from '@ant-design/icons'
 
 import { useStore } from '@/store'
-import { apiAdminAuthCheck } from '@/api/user'
+import { apiAll } from '@/utils'
 import './index.less'
 
 function Index() {
@@ -12,7 +12,7 @@ function Index() {
     fetchAuth()
   }, [])
   const fetchAuth = async () => {
-    const [err, res] = await apiAdminAuthCheck({
+    const [err, res] = await apiAll().user.apiAdminAuthCheck({
       token: '123',
     })
     console.log('auth', { err, res })

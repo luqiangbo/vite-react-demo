@@ -12,7 +12,7 @@ export default defineConfig({
     WindiCSS(),
     copy({
       targets: [
-        { src: 'src/assets/images/**/*', dest: 'dist/public/images' }, // 执行拷贝
+        { src: 'src/assets/public/**/*', dest: 'dist/public' }, // 执行拷贝
       ],
       hook: 'writeBundle',
     }),

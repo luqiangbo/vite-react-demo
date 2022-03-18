@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, DatePicker } from 'antd'
 
-import { apiDetail } from '@/api/user'
-import { getSrc } from '@/utils'
+import { getSrc, apiAll } from '@/utils'
 
 function Index() {
+  useEffect(() => {
+    // fetchDetail()
+  })
+
   const fetchDetail = async () => {
-    const [err, res] = await apiDetail()
+    const [err, res] = await apiAll().user.apiDetail()
     console.log({ err, res })
   }
+
   return (
     <div>
       <h1>index</h1>
@@ -29,8 +33,7 @@ function Index() {
         Button
       </button>
       <div>
-        <img src='/images/bj.jpg' alt='' />
-        <img src={getSrc('bj.jpg')} alt='' />
+        <img src={getSrc('bj.jpg')} />
       </div>
     </div>
   )
