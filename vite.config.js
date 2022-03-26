@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import WindiCSS from 'vite-plugin-windicss'
 import copy from 'rollup-plugin-copy'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+
+const host = 'http://rap2api.taobao.org/app/mock/1798/'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,16 +19,22 @@ export default defineConfig({
       ],
       hook: 'writeBundle',
     }),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
+      symbolId: 'icon-[dir]-[name]',
+      inject: 'body-last',
+      customDomId: '__svg__icons__dom__',
+    }),
   ],
   server: {
-    port: 8080,
+    port: 7001,
     hmr: true, // 热更新
     proxy: {
-      '/api': {
-        target: 'http://rap2api.taobao.org/app/mock/1798/',
+      '/apis': {
+        target: host,
         ws: false,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/apis/, ''),
       },
     },
   },
@@ -34,7 +43,6 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src'),
       '@c': resolve(__dirname, 'src/components'),
-      '/images': 'src/assets/images',
     },
   },
   css: {

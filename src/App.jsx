@@ -12,6 +12,7 @@ function App() {
   useStore()
   useStoreAll()
   const state = useStore((state) => state)
+  console.log('app', { state })
   return (
     <div>
       {state.user.isAuth ? (

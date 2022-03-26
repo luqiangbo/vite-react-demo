@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button, DatePicker } from 'antd'
 
 import { getSrc, apiAll } from '@/utils'
+import SvgIcon from '@c/SvgIcon'
 
 function Index() {
   useEffect(() => {
@@ -33,7 +34,7 @@ function Index() {
         Button
       </button>
       <div>
-        <img src={getSrc('bj.jpg')} />
+        <SvgIcon name='pc' />
       </div>
     </div>
   )

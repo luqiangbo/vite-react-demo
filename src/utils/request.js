@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { message } from 'antd'
+import { has } from 'lodash-es'
+
 import { useStore } from '@/store/index'
+import { parseQuery } from './index'
 
 const baseUrl = import.meta.env.VITE_APP_PROXY_URL
 const to = (promise) =>
@@ -9,12 +12,16 @@ const to = (promise) =>
 const instance = axios.create({
   baseURL: baseUrl,
   timeout: 4 * 1000,
-  headers: { 'X-Custom-Header': 'token', baseUrl },
+  headers: { baseUrl },
 })
 
-// 请求拦截
+// 入参拦截
 instance.interceptors.request.use(
   (config) => {
+    const query = parseQuery()
+    if (has(query, 'token')) {
+      config.headers.Authorization = query.token
+    }
     return config
   },
   (error) => {
@@ -22,6 +29,7 @@ instance.interceptors.request.use(
   },
 )
 
+// 出参拦截
 instance.interceptors.response.use(
   (response) => {
     const { status, data } = response
