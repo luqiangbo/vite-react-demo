@@ -1,13 +1,11 @@
-import React, { useEffect, lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 import { set, forOwn } from 'lodash-es'
 import { useStore } from '@/store/index'
 
 // https://zhuanlan.zhihu.com/p/467470716
 
-/**
- * 根据 pages 目录生成路径配置
- */
+// 根据 pages 目录生成路径配置
 function generatePathConfig() {
   // 扫描 src/pages 下的所有具有路由文件
   const modules = import.meta.glob('/src/pages/**/$*.{jsx,tsx}')
@@ -93,7 +91,7 @@ function mapPathConfigToRouteOther(cfg) {
   })
 }
 
-function generateRouteConfig() {
+function generateRouteConfig(auth) {
   const { layout, ...pathConfig } = generatePathConfig()
   const admin = {}
   const other = {}
@@ -105,11 +103,9 @@ function generateRouteConfig() {
     }
   })
   // 提取跟路由的 layout
-  const store = useStore.getState()
-  const { user } = store
-  if (user.auth === 0) {
+  if (auth === 0) {
     return [...mapPathConfigToRouteOther(other)]
-  } else if (user.auth === 1) {
+  } else if (auth > 0) {
     return [
       {
         path: '/',
@@ -121,11 +117,14 @@ function generateRouteConfig() {
   }
 }
 
-export function PageRoutes(props) {
-  useEffect(() => {}, [])
-  if (props.auth !== -1) {
-    const routeConfig = generateRouteConfig()
+const Index = () => {
+  const auth = useStore((state) => state.auth)
+  console.log('page-router', { auth })
+  if (auth !== -1) {
+    const routeConfig = generateRouteConfig(auth)
     return useRoutes(routeConfig)
   }
   return <div>*</div>
 }
+
+export default Index

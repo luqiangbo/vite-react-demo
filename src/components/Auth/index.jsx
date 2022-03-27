@@ -6,7 +6,7 @@ import { apiAll } from '@/utils'
 import './index.less'
 
 function Index() {
-  const setUser = useStore((state) => state.setUser)
+  const { setKey } = useStore((state) => state)
 
   useEffect(() => {
     fetchAuth()
@@ -15,13 +15,17 @@ function Index() {
     const [err, res] = await apiAll().user.apiAdminAuthCheck({
       token: '123',
     })
-    console.log('auth', { err, res })
     if (err) return
-    const { code, auth } = res
-    setUser({
+    const { auth } = res
+    setKey({
       isAuth: true,
       auth,
     })
+    setTimeout(() => {
+      setKey({
+        name: 'xiaoming',
+      })
+    }, 2000)
   }
   return (
     <div className='init'>

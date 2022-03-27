@@ -6,8 +6,7 @@ import { useStore } from '@/store/index'
 import { parseQuery } from './index'
 
 const baseUrl = import.meta.env.VITE_APP_PROXY_URL
-const to = (promise) =>
-  promise.then((res) => [null, res.data]).catch((err) => [err, null])
+const to = (promise) => promise.then((res) => [null, res.data]).catch((err) => [err, null])
 
 const instance = axios.create({
   baseURL: baseUrl,
@@ -36,11 +35,8 @@ instance.interceptors.response.use(
     message.info(status)
     if (data.code === -1) {
       const store = useStore.getState()
-      const { user, setUser } = store
-      setUser({
-        ...user,
-        auth: 0,
-      })
+      const { setAuth } = store
+      setAuth(0)
       return Promise.reject(response.data)
     } else {
       return response

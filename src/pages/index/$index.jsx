@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
-import { Button, DatePicker } from 'antd'
+import { useEffect } from 'react'
+
+import { Button } from 'antd'
 
 import { getSrc, apiAll } from '@/utils'
 import SvgIcon from '@c/SvgIcon'
 
 function Index() {
   useEffect(() => {
-    // fetchDetail()
-  })
+    fetchDetail()
+    console.log('page-index-init')
+  }, [])
 
   const fetchDetail = async () => {
     const [err, res] = await apiAll().user.apiDetail()

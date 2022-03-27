@@ -7,9 +7,4 @@ import '@/styles/index.less'
 import 'virtual:windi.css'
 import 'virtual:svg-icons-register'
 
-ReactDOM.render(
-  // <React.StrictMode>
-  <App />,
-  // </React.StrictMode>,
-  document.getElementById('root'),
-)
+ReactDOM.render(<App />, document.getElementById('root'))
