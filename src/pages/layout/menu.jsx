@@ -1,12 +1,8 @@
 import { useState, lazy } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
-import {
-  HomeOutlined,
-  ApartmentOutlined,
-  FundOutlined,
-} from '@ant-design/icons'
-import _ from 'lodash-es'
+import { HomeOutlined, ApartmentOutlined, FundOutlined } from '@ant-design/icons'
+import { has } from 'lodash-es'
 
 const { SubMenu } = Menu
 
@@ -40,7 +36,7 @@ function Index() {
 
   const dpList = (arr) => {
     return arr.map((u) => {
-      if (_.has(u, 'child')) {
+      if (has(u, 'child')) {
         return (
           <SubMenu key={u.key} icon={u.icon} title={u.name}>
             {dpList(u.child)}

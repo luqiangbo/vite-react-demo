@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import WindiCSS from 'vite-plugin-windicss'
 import copy from 'rollup-plugin-copy'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const host = 'http://rap2api.taobao.org/app/mock/1798/'
 
@@ -13,6 +14,7 @@ export default defineConfig({
   plugins: [
     react(),
     WindiCSS(),
+    visualizer(),
     copy({
       targets: [
         { src: 'src/assets/public/**/*', dest: 'dist/public' }, // 执行拷贝
