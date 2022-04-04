@@ -5,6 +5,10 @@ import WindiCSS from 'vite-plugin-windicss'
 import copy from 'rollup-plugin-copy'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { visualizer } from 'rollup-plugin-visualizer'
+import banner from 'vite-plugin-banner'
+import dayjs from 'dayjs'
+
+import pkg from './package.json'
 
 const host = 'http://rap2api.taobao.org/app/mock/1798/'
 
@@ -14,7 +18,6 @@ export default defineConfig({
   plugins: [
     react(),
     WindiCSS(),
-    visualizer(),
     copy({
       targets: [
         { src: 'src/assets/public/**/*', dest: 'dist/public' }, // 执行拷贝
@@ -27,6 +30,8 @@ export default defineConfig({
       inject: 'body-last',
       customDomId: '__svg__icons__dom__',
     }),
+    visualizer(),
+    banner(`/**\n * version: v${pkg.version}\n * time: ${dayjs().format('YYYY-MM-DD HH:mm')}\n */`),
   ],
   server: {
     port: 7001,
