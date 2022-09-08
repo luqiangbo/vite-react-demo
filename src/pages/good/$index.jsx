@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { Button } from 'antd'
 
-import { useStore } from '@/store/index'
+import { useStoreAll } from '@/store/all'
 
 function Index() {
-  const addAFish = useStore((state) => state.addAFish)
-  const cutAFish = useStore((state) => state.cutAFish)
+  const fishes = useStoreAll((state) => state.fishes)
+  const addAFish = useStoreAll((state) => state.addAFish)
+  const cutAFish = useStoreAll((state) => state.cutAFish)
   return (
     <div>
       good
+      <h1>{fishes}</h1>
       <Button
         onClick={() => {
           addAFish()
