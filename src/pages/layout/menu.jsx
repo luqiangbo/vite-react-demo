@@ -32,7 +32,7 @@ const items = [
   ]),
 ]
 function Index() {
-  return <Menu defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode='inline' theme='dark' items={items} />
+  return <Menu defaultSelectedKeys={['1']} defaultOpenKeys={[]} mode='inline' theme='dark' items={items} />
 }
 
 export default Index
