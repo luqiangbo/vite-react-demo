@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { Button } from 'antd'
+import { Button, DatePicker } from 'antd'
 
 import { getSrc, apiAll } from '@/utils'
 import SvgIcon from '@c/SvgIcon'
@@ -26,6 +26,11 @@ function Index() {
       >
         点击退出123
       </Button>
+      <DatePicker
+        onChange={(date, dateString) => {
+          console.log(date, dateString)
+        }}
+      />
       <button
         bg='blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600'
         text='sm white'
