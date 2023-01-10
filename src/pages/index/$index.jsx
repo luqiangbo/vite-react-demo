@@ -1,11 +1,14 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-import { Button, DatePicker } from 'antd'
+import { Button, DatePicker, Card, Affix } from 'antd'
 
 import { getSrc, apiAll } from '@/utils'
 import SvgIcon from '@c/SvgIcon'
 
 function Index() {
+  const [top, setTop] = useState(10)
+  const [bottom, setBottom] = useState(10)
+
   useEffect(() => {
     fetchDetail()
     console.log('page-index-init')
@@ -24,7 +27,7 @@ function Index() {
           fetchDetail()
         }}
       >
-        点击退出123
+        点击退出1234555
       </Button>
       <DatePicker
         onChange={(date, dateString) => {
@@ -43,6 +46,132 @@ function Index() {
       <div>
         <SvgIcon name='pc' />
       </div>
+      <Card
+        title='Default size card'
+        extra={<a href='#'>More</a>}
+        style={{
+          width: 300,
+        }}
+      >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+      <Card
+        title='Default size card'
+        extra={<a href='#'>More</a>}
+        style={{
+          width: 300,
+        }}
+      >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+      <Card
+        title='Default size card'
+        extra={<a href='#'>More</a>}
+        style={{
+          width: 300,
+        }}
+      >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+      <Affix offsetTop={120}>
+        <Button type='primary' onClick={() => setTop(top + 10)}>
+          Affix top
+        </Button>
+      </Affix>
+      <br />
+      <Affix offsetBottom={bottom}>
+        <Button type='primary' onClick={() => setBottom(bottom + 10)}>
+          Affix bottom
+        </Button>
+      </Affix>
+      <Card
+        title='Default size card'
+        extra={<a href='#'>More</a>}
+        style={{
+          width: 300,
+        }}
+      >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
+      <Card
+        title='Default size card'
+        extra={<a href='#'>More</a>}
+        style={{
+          width: 300,
+        }}
+      >
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+        <p>Card content</p>
+      </Card>
     </div>
   )
 }

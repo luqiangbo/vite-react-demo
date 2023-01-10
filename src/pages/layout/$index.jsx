@@ -1,44 +1,28 @@
 import { Outlet } from 'react-router-dom'
 import { useSetState } from 'ahooks'
-import { Layout } from 'antd'
+import { Layout, Col, Row } from 'antd'
 
 import CMenu from './menu'
+import './index.less'
 
 const { Content, Sider } = Layout
 
 function Index() {
   const [state, setState] = useSetState({
     collapsed: true,
+    width: '200px',
   })
 
   return (
-    <Layout hasSider>
-      <Sider
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-        collapsible
-        collapsed={state.collapsed}
-        onCollapse={() => {
-          setState({
-            collapsed: !state.collapsed,
-          })
-        }}
-      >
-        <div className='logo' />
+    <Row className='layout-row'>
+      <Col className='layout-left'>
+        <div className='logo'>LOGO</div>
         <CMenu />
-      </Sider>
-      <Layout className='site-layout' style={{ marginLeft: state.collapsed ? 80 : 200 }}>
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          <Outlet />
-        </Content>
-      </Layout>
-    </Layout>
+      </Col>
+      <Col className='layout-right'>
+        <Outlet />
+      </Col>
+    </Row>
   )
 }
 
