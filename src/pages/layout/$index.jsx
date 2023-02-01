@@ -9,18 +9,16 @@ const { Sider } = Layout
 
 function Index() {
   return (
-    <div>
+    <Row>
       <Sider className='layout-sider'>
         <div className='logo'>LOGO</div>
         <CMenu />
       </Sider>
-      <Row>
-        <Col className='layout-hide' />
-        <Col className='layout-content'>
-          <Outlet />
-        </Col>
-      </Row>
-    </div>
+      <Col className='layout-hide' />
+      <Col className='layout-content'>
+        <Outlet />
+      </Col>
+    </Row>
   )
 }
 

@@ -42,7 +42,7 @@ export default defineConfig(({ command, mode }) => {
       banner(`/**\n * version: v${pkg.version}\n * time: ${dayjs().format('YYYY-MM-DD HH:mm')}\n */`),
     ],
     server: {
-      port: 7001,
+      port: 9001,
       hmr: true, // 热更新
       proxy: {
         '/apis': {
