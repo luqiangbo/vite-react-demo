@@ -1,9 +1,9 @@
-import queryString from 'query-string'
+import qs from 'qs'
 import { set } from 'lodash-es'
 
 // url参数
 export const parseQuery = () => {
-  return queryString.parseUrl(window.location.href).query
+  return qs.parse(window.location.search, { ignoreQueryPrefix: true })
 }
 
 export const checkLogin = (permits) => {}
