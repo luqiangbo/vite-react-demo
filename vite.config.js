@@ -16,9 +16,9 @@ export default defineConfig(({ command, mode }) => {
   let host = ''
 
   if (env.MODE === 'dev') {
-    host = 'http://rap2api.taobao.org/app/mock/1798/'
+    host = 'https://mockapi.eolink.com/5T54ygp7799eaad85c0b7f14356f153372fc5dc4b312b23/'
   } else if (env.MODE === 'prod') {
-    host = 'http://rap2api.taobao.org/app/mock/1798/'
+    host = 'https://mockapi.eolink.com/5T54ygp7799eaad85c0b7f14356f153372fc5dc4b312b23/'
   }
 
   return {

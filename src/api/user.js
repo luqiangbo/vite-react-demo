@@ -1,8 +1,7 @@
 import { request } from '@/utils/request'
 
 // 校验token
-export const apiAdminAuthCheck = (data) =>
-  request({ url: 'api/admin_auth_check', data })
+export const apiAdminAuthCheck = (data) => request({ url: '/user/login', data })
 
 // 详情
-export const apiDetail = (data) => request({ url: 'api/detail', data })
+export const apiDetail = (data) => request({ url: '/user/detail', data })
