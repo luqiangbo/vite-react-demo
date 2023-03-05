@@ -12,14 +12,8 @@ import postcsspxtoviewport from 'postcss-px-to-viewport'
 import pkg from './package.json'
 
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-  let host = ''
-
-  if (env.MODE === 'dev') {
-    host = 'https://mockapi.eolink.com/5T54ygp7799eaad85c0b7f14356f153372fc5dc4b312b23/'
-  } else if (env.MODE === 'prod') {
-    host = 'https://mockapi.eolink.com/5T54ygp7799eaad85c0b7f14356f153372fc5dc4b312b23/'
-  }
+  // const env = loadEnv(mode, process.cwd(), '')
+  // const host =
 
   return {
     base: './',
@@ -41,18 +35,18 @@ export default defineConfig(({ command, mode }) => {
       visualizer(),
       banner(`/**\n * version: v${pkg.version}\n * time: ${dayjs().format('YYYY-MM-DD HH:mm')}\n */`),
     ],
-    server: {
-      port: 9001,
-      hmr: true, // 热更新
-      proxy: {
-        '/apis': {
-          target: host,
-          ws: false,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/apis/, ''),
-        },
-      },
-    },
+    // server: {
+    //   port: 9001,
+    //   hmr: true, // 热更新
+    //   proxy: {
+    //     '/apis': {
+    //       target: host,
+    //       ws: false,
+    //       changeOrigin: true,
+    //       rewrite: (path) => path.replace(/^\/apis/, ''),
+    //     },
+    //   },
+    // },
     preview: { strictPort: true },
     resolve: {
       alias: {
