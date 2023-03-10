@@ -1,10 +1,11 @@
 version: '3'
 services:
-  vite-demo:
+  eway:
     build:
       context: .
       dockerfile: Dockerfile
-    image: vite-demo
-    container_name: vite-demo
+      args:
+        WEB_ENV: "build:dev"
+    container_name: eway
     ports:
       - 9000:9001 # 宿主机可以用 127.0.0.1:9000

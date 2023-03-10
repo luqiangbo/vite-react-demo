@@ -1,22 +1,26 @@
 FROM node:14.20.0-alpine as builder
 
-WORKDIR /data/app/vite-demo/
 
-COPY package*.json /data/app/vite-demo/
+# build:dev  //测试
+# build:global  //global
+# build:us //us
+ARG WEB_ENV
+
+WORKDIR /data/app/eway/
+
+COPY package.json pnpm-lock.yaml /data/app/eway/
 
 RUN npm config set registry https://registry.npmmirror.com
 RUN npm install -g pnpm
 RUN pnpm install
-# RUN umi -v
 
-COPY . /data/app/vite-demo/
+COPY . /data/app/eway/
 
-RUN pnpm build
+RUN pnpm $WEB_ENV 
 
 
-# # 二次构建
 FROM nginx
 
-COPY --from=builder /data/app/vite-demo/dist/ /usr/share/nginx/html/
+COPY --from=builder /data/app/eway/dist/ /usr/share/nginx/html/
 
-COPY --from=builder /data/app/vite-demo/vite-demo.conf /etc/nginx/conf.d/vite-demo.conf
+COPY --from=builder /data/app/eway/eway.conf /etc/nginx/conf.d/eway.conf
