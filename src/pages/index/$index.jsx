@@ -4,6 +4,7 @@ import { Button, DatePicker, Card, Affix } from 'antd'
 
 import { getSrc, apiAll } from '@/utils'
 import SvgIcon from '@c/SvgIcon'
+import './index.less'
 
 function Index() {
   const [top, setTop] = useState(10)
@@ -21,7 +22,10 @@ function Index() {
 
   return (
     <div>
-      <h1>index</h1>
+      <div className='flex justify-between items-center'>
+        <h1 className=''>index</h1>
+        <Button type='primary'>点击</Button>
+      </div>
       <Button
         onClick={() => {
           fetchDetail()
