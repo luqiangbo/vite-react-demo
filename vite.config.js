@@ -34,10 +34,6 @@ export default defineConfig(({ command, mode }) => {
       visualizer(),
       banner(`/**\n * version: v${pkg.version}\n * time: ${dayjs().format('YYYY-MM-DD HH:mm')}\n */`),
     ],
-    server: {
-      port: 9001,
-      hmr: true, // 热更新
-    },
     preview: { strictPort: true },
     resolve: {
       alias: {
