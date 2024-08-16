@@ -7,6 +7,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 import banner from 'vite-plugin-banner'
 import dayjs from 'dayjs'
 import oxlintPlugin from 'vite-plugin-oxlint'
+import lightningcss from 'vite-plugin-lightningcss'
 
 import pkg from './package.json'
 
@@ -34,6 +35,11 @@ export default defineConfig(({ command, mode }) => {
       banner(`/**\n * version: v${pkg.version}\n * time: ${dayjs().format('YYYY-MM-DD HH:mm')}\n */`),
       oxlintPlugin({
         path: 'src',
+      }),
+      lightningcss({
+        browserslist: '>= 0.25%',
+        minify: true,
+        cssModules: true,
       }),
     ],
     preview: { strictPort: true },
