@@ -30,8 +30,6 @@
     "zustand": "^4.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
     "@vitejs/plugin-react": "^4.2.0",
     "less": "^4.2.0",
     "oxlint": "^0.7.2",
